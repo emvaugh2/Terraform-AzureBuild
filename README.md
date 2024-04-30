@@ -1,2 +1,4 @@
-# Terraform-AzureBuild
-We're going to create a small environment in Azure completely from Infrastructure as Code (IaC) using Terraform. 
+# Managing Microsoft Azure Applications and Infrastructure with Terraform
+
+
+![Image](TerraformDiagram.png)
