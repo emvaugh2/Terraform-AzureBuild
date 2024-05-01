@@ -98,6 +98,9 @@ You're in!
 
 ![Image](AzureTerraform13.png)
 
+One thing I forgot to get a picture of is using `terraform destroy`. You can use this commnd to delete all the resources you just created. It's that easy. Give it a try once you're done exploring. 
 
 
 Personal Notes: 
+
+This entire demo is pretty much my personal notes. I will see how cool, convenient, and quick using Terraform is. Now, the initial set up may take some time if you're trying to make it all work but this is EXTREMELY useful if you're quickly deploying and detroying the same environment over and over. I see how it can also save money on resource utilization. I actually really enjoyed this lab compared to the other ones. 
