@@ -73,6 +73,31 @@ After our deployment, we have ALL the resources listed in the beginning of this 
 
 ## Breaking down Terraform Blocks
 
-So, before we test if our deployment was fully operational, I want to break down the Terraform files and blocks from a beginner perspective.
+So, before we test if our deployment was fully operational, I want to break down the Terraform files and blocks from a beginner perspective. Lets start with the `main.tf` file.
+
+![Image](AzureTerraform14.png)
+
+I believe this file is where we determine the dependencies of our Terraform environment. We can put all of this information in our `azureterraformdeploy.tf` file but I think it's best practice to keep them separate. This file tells us what required version of Terraform is necessary for our deployment. It tells us which cloud provider we'll be working with. In our class, we're using Azure so we have to specify `azurerm` where the rm stands for resource manager. We also have to specify `azuread` which links our configurations to any Azure AD rules we have. 
+
+Now for this lab, I don't believe we even need that line especially considering the sandbox doesn't allow us to use Azure AD. We are able to use a service principal but we don't need that for our demo. With that being said, if we wanted to specify a service principal, we would do that in this file. It's nice to keep login credentials separate from the actual IaC you're deploying. You would specify the subscription ID, service principal ID and secret, and then the tenant ID in the file. 
+
+![Image](AzureTerraform15.png)
+
+Now for the actual code itself, we can choose whatever name we want for this file. I tried to keep it neutral. But within the code, we have blocks of lines. Each block defines a new resource or part of a new resource. We're going to highlight the virtual network block. We have to define the resource we're looking to create using `resource "azurerm_virtual_network"` which is pretty readable. That second name, `"TFNet"` is also straightforward. Think of this as assigning the resource we're about to create a temporary variable name. This is different than the actual name it will appear as in the Azure portal. Think of this as just a temp variable within the Terraform code. I think this name is also mandatory for each block but don't quote me. 
+
+Then after we say what resource we're creating, we start putting the information that we need. All resources have mandatory information they require. For our Vnet, we have the Azure name, the address space, location, and the RG it will be located in. We can also put some tags on the resource. 
+
+That's pretty much what a Terraform block is. You manipulate these blocks to create the resources we need. It's like using PowerShell. Maybe just easier to read. You can go through the file I have and ask Chat GPT what certain parts of the code mean. I pieced this togeher from 6 different labs all the code isn't mine. 
 
 
+## Testing the deployment via the VM
+
+To finish off this demo, we'll test our deployment by actually logging into our VM that we created. If this works, that means our NSG, NIC, PIP, and VM were all configured correctly because we need all of those things to log into our VM. Copy the PIP into ASC and `ssh` into the VM. I have a username and password at the bottom of the `azureterraformdeploy.tf` file so those credentials are there (once again, feel free to change them to whatever you want). You should be able to log in and your username and VM name will pop up. 
+
+You're in! 
+
+![Image](AzureTerraform13.png)
+
+
+
+Personal Notes: 
